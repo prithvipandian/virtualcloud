@@ -25,4 +25,4 @@ def do_login():
         return "<p>Login failed.</p>"
 
 port = os.environ.get('PORT', 5000)
-run(host='localhost', port=port, debug=True)
+run(host='0.0.0.0', port=port, debug=True)
