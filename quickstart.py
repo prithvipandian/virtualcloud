@@ -3,14 +3,15 @@
 import httplib2
 import pprint
 
+
 from apiclient.discovery import build
 from apiclient.http import MediaFileUpload
 from oauth2client.client import OAuth2WebServerFlow
 
 
 # Copy your credentials from the console
-CLIENT_ID = '870106712178.apps.googleusercontent.com'
-CLIENT_SECRET = '{"web":{"auth_uri":"https://accounts.google.com/o/oauth2/auth","client_secret":"8xxbSHnUalURC4ej51FGASWR","token_uri":"https://accounts.google.com/o/oauth2/token","client_email":"870106712178@developer.gserviceaccount.com","client_x509_cert_url":"https://www.googleapis.com/robot/v1/metadata/x509/870106712178@developer.gserviceaccount.com","client_id":"870106712178.apps.googleusercontent.com","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs"}}'
+CLIENT_ID = '870106712178-889u4uppc9eqg9nn6prto4cja7dn3g25.apps.googleusercontent.com'
+CLIENT_SECRET = '2uS8GNwONT_qq_0gHoL1Xpxi'
 
 # Check https://developers.google.com/drive/scopes for all available scopes
 OAUTH_SCOPE = 'https://www.googleapis.com/auth/drive'
