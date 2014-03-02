@@ -1,4 +1,4 @@
-import dropbox, db_ops
+from dropbox import db_upload
     
 def entry():
     print 'Please enter a command'
