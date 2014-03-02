@@ -1,4 +1,4 @@
-import dropbox, db_ops
+import dropbox, db_ops, hashlib, uuid
     
 def entry():
     print 'Please enter a command'
@@ -24,6 +24,8 @@ def download(cmds):
 
 #Intro
 print 'Welcome to OskiCloud!'
+print 'Login or 
+LOR = 
 #Login
 username = raw_input('username: ')
 password = raw_input('password: ')
@@ -33,6 +35,7 @@ print 'Welcome ' + username + '!'
 
 options = {'upload': upload, 'download': download}
 UL = {'dropbox': db_upload, 'gdrive': 1}
+#User_Info = {
     
     
     

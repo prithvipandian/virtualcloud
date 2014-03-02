@@ -1,0 +1,3 @@
+import db_ops
+random = new db(-1)
+db_upload(random.upload(db_ops.py))
