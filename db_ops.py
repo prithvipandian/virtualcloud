@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # Include the Dropbox SDK
 import dropbox
 
@@ -9,6 +10,7 @@ flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
 class db(object):
     AT = ''
     client = 0
+    
     def __init__(self, token):
         self.AT = token
         if token == -1:

@@ -55,7 +55,7 @@ class gd(object):
          pprint.pprint(file)
         
     def gd_download(self, user_file):
-        download_url = user_file.get('downloadUrl')
+        download_url = userfile.get('downloadUrl')
         if download_url:
             resp, content = self.drive_service._http.request(download_url)
             if resp.status == 200:

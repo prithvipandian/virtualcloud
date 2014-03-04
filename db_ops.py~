@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # Include the Dropbox SDK
 import dropbox
 
@@ -41,6 +42,3 @@ class db(object):
         out.write(f.read())
         out.close()
         print metadata
-
-random = db(-1)
-random.db_upload("db_ops.py")
