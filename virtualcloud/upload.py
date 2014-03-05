@@ -1,19 +1,17 @@
 #!/usr/bin/python
 
-import sys, getopt
+import sys
+import getopt
 import tempfile
 import subprocess
 import hashlib
 import db_ops
+import json
 
-divide_script = '''\
-
-'''
 def main(argv):
     inputfile = ''
-    chunksize = 0;
-    dropbox = false
-    gdrive = false
+    chunksize = 0
+    buffer = 1024
 
     #Parsing command line input
     try:
@@ -26,47 +24,50 @@ def main(argv):
            print 'upload -f <filepath> -s <chunksize> -d [for dropbox] -g [for gdrive]'
            sys.exit()
         elif opt == '-d':
-            dropbox = true
+            pass
         elif opt == '-g':
-            gdrive = true
+            pass
         elif opt in ("-f", "--file"):
             filename = arg
         elif opt in ("-s", "--sizechunk"):
             chunksize = int(opt)
 
-    prefix = hashlib.sha224(filename).hexdigest()
-
-
-
-    split_bash = "split -b" + chunksize + " " + inputfile + " " + prefix
-    
-    with tempfile.NamedTemporaryFile() as scriptfile:
-        scriptfile.write(split_bash)
-        scriptfile.flush()
-        subprocess.call(['/bin/bash', scriptfile.name])
-    print 'Input file is "', inputfile
-    print 'Output file is "', outputfile
-
-def split_file(file, prefix, max_size, buffer=1024):
-    if dropbox:
-        db = db_ops.db()
+    try:
+        with '.virtualcloud' as userjson:
+            userclouds = json.load(userjson)
+    except IOError:
+        print "Please login first!"
+        sys.exit()
+    db_tokens = userclouds[db]
+    dbclients = []
+    for token in db_tokens:
+        dbclients.append(db_ops.db(token))
         
-    with open (file, 'r+b') as src:
+    gd_tokens = userclouds[gd]
+    gdclients = []    
+    for token in gd_tokens:
+        gdclients.append(gd_ops.gd(token))
+
+    prefix = hashlib.sha224(filename).hexdigest()
+    
+    with open (filename, 'r+b') as src:
         suffix = 0
         while True:
             with tempfile.TemporaryFile() as target:
                 written = 0
-                while written <= max_size
+                while written <= chunksize
                     data = src.read(buffer)
                     if data:
                         target.write(data)
                         written += buffer
                     else:
                         return suffix
+                #Iteration through clients TODO, temporarily only looks at first db client
+                outputfilepath = prefix + '.%s' % suffix
+                dbclients[0].db_upload(ouputfilepath, target)
                 suffix +=1
 
+
                 
-open(prefix + '.%s' % suffix, 'w+b'
-    
 if __name__ == "__main__":
    main(sys.argv[1:])
