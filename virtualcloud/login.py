@@ -1,6 +1,9 @@
 #Create file with Empty JSON
 
-import sys, os.path, json, db_ops, gd_ops
+import sys, os.path, json
+
+from db_ops import db
+from gd_ops import gd
 
 data = ""
 
