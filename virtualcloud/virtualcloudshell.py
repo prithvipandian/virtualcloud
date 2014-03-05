@@ -13,18 +13,16 @@ class VirtualCloudShell (cmd.Cmd):
         '''
         #setup()
         pass
-    def do_login(self, *args):
+    def do_login(self):
         'Login with username and password'
-        #login(args)
-        pass
+        db_ops.db_login()
     def do_upload(self, *args):
         'Upload to one or both accounts from local'
-        #upload(args)
+        upload(args)
         pass
     def do_download(self, *args):
         'Download from accounts to local'
-        #download(args)
-        pass
+        download(args)
     def do_ls(self, *args):
         'List all files in current directory'
         #list(args)
