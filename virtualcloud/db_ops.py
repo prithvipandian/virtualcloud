@@ -19,7 +19,7 @@ class db(object):
             self.client = dropbox.client.DropboxClient(self.AT)
 
     def db_login(self):
-        # Have the user sign in and authorize this token
+        # Have the user sign in and authorize this1 token
         authorize_url = flow.start()
         print '1. Go to: ' + authorize_url
         print '2. Click "Allow" (you might have to log in first)'
@@ -32,9 +32,8 @@ class db(object):
         self.client = dropbox.client.DropboxClient(access_token)
         print 'linked account: ', self.client.account_info()
 
-    def db_upload(self, path_db, user_file, name):
-        f = open(user_file, 'rb')
-        response = self.client.put_file('/' + path_db + '/' + name, f)
+    def db_upload(self, path_db, user_file):
+        response = self.client.put_file('/' + path_db, user_file)
         print 'uploaded: ', response
     
     def db_download(self, path_db):

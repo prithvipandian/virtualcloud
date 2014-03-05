@@ -26,17 +26,17 @@ def download (argv):
             targetdir = arg
 
     try:
-        with '.virtualcloud' as userjson:
+        with open('.virtualcloud') as userjson:
             userclouds = json.load(userjson)
     except IOError:
         print "Please login first!"
         sys.exit()
-    db_tokens = userclouds[db]
+    db_tokens = userclouds["dropbox"]
     dbclients = []
     for token in db_tokens:
         dbclients.append(db_ops.db(token))
         
-    gd_tokens = userclouds[gd]
+    gd_tokens = userclouds["gdrive"]
     gdclients = []    
     for token in gd_tokens:
         gdclients.append(gd_ops.gd(token))

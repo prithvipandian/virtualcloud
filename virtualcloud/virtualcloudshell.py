@@ -20,9 +20,9 @@ class VirtualCloudShell (cmd.Cmd):
     def do_login(self, *args):
         'Login with username and password'
         login()
-    def do_upload(self, *args):
+    def do_upload(self, fn, cs):
         'Upload to one or both accounts from local'
-        upload(args)
+        upload(fn, cs)
     def do_download(self, *args):
         'Download from accounts to local'
         download(args)

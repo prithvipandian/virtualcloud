@@ -7,46 +7,31 @@ import hashlib
 import db_ops
 import json
 
-def upload(argv):
+def upload(fn, cs):
     inputfile = ''
     chunksize = 0
     buffer = 1024
 
-    #Parsing command line input
+    filename = fn
+    chunksize = cs
+    
     try:
-        opts, args = getopt.getopt(argv,"hdgf:s:",["filename=","sizechunk="])
-    except getopt.GetoptError:
-        print 'upload -f <filepath> -s <chunksize> -d [for dropbox] -g [for gdrive]'
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt == '-h':
-           print 'upload -f <filepath> -s <chunksize> -d [for dropbox] -g [for gdrive]'
-           sys.exit()
-        elif opt == '-d':
-            pass
-        elif opt == '-g':
-            pass
-        elif opt in ("-f", "--file"):
-            filename = arg
-        elif opt in ("-s", "--sizechunk"):
-            chunksize = int(opt)
-
-    try:
-        with '.virtualcloud' as userjson:
+        with open('.virtualcloud') as userjson:
             userclouds = json.load(userjson)
     except IOError:
         print "Please login first!"
         sys.exit()
-    db_tokens = userclouds[db]
+    db_tokens = userclouds["dropbox"]
     dbclients = []
     for token in db_tokens:
         dbclients.append(db_ops.db(token))
         
-    gd_tokens = userclouds[gd]
+    gd_tokens = userclouds["gdrive"]
     gdclients = []    
     for token in gd_tokens:
         gdclients.append(gd_ops.gd(token))
 
+    print(filename)
     prefix = hashlib.sha224(filename).hexdigest()
     
     with open (filename, 'r+b') as src:
@@ -64,7 +49,7 @@ def upload(argv):
                         upload_completed = True
                 #Iteration through clients TODO, temporarily only looks at first db client
                 outputfilepath = prefix + '.%s' % suffix
-                dbclients[0].db_upload(ouputfilepath, target)
+                dbclients[0].db_upload(outputfilepath, target)
                 suffix +=1
 
 
