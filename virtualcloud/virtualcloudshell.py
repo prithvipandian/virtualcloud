@@ -1,5 +1,9 @@
 import cmd
-import db_ops
+import upload
+import download
+import login
+import logout
+
 
 class VirtualCloudShell (cmd.Cmd):
     intro = 'Welcome to VirtualCloud! Type help or ? to list commands.\n'
@@ -15,14 +19,16 @@ class VirtualCloudShell (cmd.Cmd):
         pass
     def do_login(self, *args):
         'Login with username and password'
-        db_ops.db_login()
+        login()
     def do_upload(self, *args):
         'Upload to one or both accounts from local'
         upload(args)
-        pass
     def do_download(self, *args):
         'Download from accounts to local'
         download(args)
+    def do_logout(self, *args):
+        'Logout and erase all user data'
+        logout()
     def do_ls(self, *args):
         'List all files in current directory'
         #list(args)

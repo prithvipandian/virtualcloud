@@ -4,10 +4,10 @@ import sys
 import getopt
 import tempfile
 import hashlib
-from virtualcloud import db_ops
+import db_ops
 import json
 
-def main(argv):
+def upload(argv):
     inputfile = ''
     chunksize = 0
     buffer = 1024
@@ -55,7 +55,7 @@ def main(argv):
         while upload_completed is False:
             with tempfile.TemporaryFile() as target:
                 written = 0
-                while written <= chunksize
+                while written <= chunksize:
                     data = src.read(buffer)
                     if data:
                         target.write(data)
@@ -69,5 +69,5 @@ def main(argv):
 
 
                 
-if __name__ == "__main__":
-   main(sys.argv[1:])
+if __name__ == "__upload__":
+   upload(sys.argv[1:])

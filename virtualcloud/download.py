@@ -2,10 +2,10 @@ import sys
 import os
 import getopt
 import hashlib
-from virtualcloud import db_ops
+import db_ops
 import tempfile
 
-def main (argv)
+def download (argv):
     filename = ''
     infiles = []
     targetdir = os.getcwd()
@@ -61,3 +61,7 @@ def main (argv)
                         target.write(data)
                     else:
                         break
+
+
+if __name__ == "__download__":
+   downloadload(sys.argv[1:])

@@ -9,7 +9,7 @@ if len(sys.argv) == 1:
 
 options = {
            'login' : login,
-           'upload' :upload,
+           'upload' : upload,
            'download' : download,
            'logout' : logout
            }

@@ -3,15 +3,15 @@
 import sys, os.path, json
 
 from db_ops import db
-from gd_ops import gd
+#from gd_ops import gd
 
-data = ""
+def login (argv): 
+    data = ""
 
-if os.path.isfile('.virtualcloud') == True:
-    
-    json_data = open(".virtualcloud", "r+")
-    data = json.load(".virtualcloud")
-    json_data.close()
+    if os.path.isfile('.virtualcloud') == True: 
+        json_data = open(".virtualcloud", "r+")
+        data = json.load(".virtualcloud")
+        json_data.close()
     
 else:
     data = {
@@ -29,10 +29,10 @@ while True:
         ndb.db_login()
         data['dropbox'].append(nbd.AT)
         
-    if cmd == 'gdrive':
+    '''if cmd == 'gdrive':
         ngd = gd(-1)
         ngd.gd_login()
-        data['gdrive'].append(ngd.AT)
+        data['gdrive'].append(ngd.AT)'''
     
     if cmd == 'back':
         break
