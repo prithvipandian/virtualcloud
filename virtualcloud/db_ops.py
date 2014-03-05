@@ -32,14 +32,14 @@ class db(object):
         self.client = dropbox.client.DropboxClient(access_token)
         print 'linked account: ', self.client.account_info()
 
-    def db_upload(self, user_file):
+    def db_upload(self, path_db, user_file, name):
         f = open(user_file, 'rb')
-        response = self.client.put_file('/' + user_file, f)
+        response = self.client.put_file('/' + path_db + '/' + name, f)
         print 'uploaded: ', response
     
-    def db_download(self, user_file):
-        f, metadata = self.client.get_file_and_metadata('/' + user_file)
-        out = open(user_file, 'wb')
+    def db_download(self, path_db, user_file, name):
+        f, metadata = self.client.get_file_and_metadata('/' + path_db + '/' + user_file)
+        out = open(name, 'wb')
         out.write(f.read())
         out.close()
         print metadata
