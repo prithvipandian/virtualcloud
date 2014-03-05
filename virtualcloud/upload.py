@@ -3,9 +3,8 @@
 import sys
 import getopt
 import tempfile
-import subprocess
 import hashlib
-import db_ops
+import virtualcloud
 import json
 
 def main(argv):
@@ -52,7 +51,8 @@ def main(argv):
     
     with open (filename, 'r+b') as src:
         suffix = 0
-        while True:
+        upload_completed = False
+        while upload_completed is False:
             with tempfile.TemporaryFile() as target:
                 written = 0
                 while written <= chunksize
@@ -61,7 +61,7 @@ def main(argv):
                         target.write(data)
                         written += buffer
                     else:
-                        return suffix
+                        upload_completed = True
                 #Iteration through clients TODO, temporarily only looks at first db client
                 outputfilepath = prefix + '.%s' % suffix
                 dbclients[0].db_upload(ouputfilepath, target)
