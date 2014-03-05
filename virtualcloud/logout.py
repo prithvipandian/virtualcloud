@@ -1,7 +1,8 @@
 import os.path
 
-try:
-    os.remove(".virtualcloud")
-except OSError:
-    print 'no file found to delete'
+def logout():
+    try:
+        os.remove(".virtualcloud")
+    except OSError:
+        print 'no file found to delete'
 
