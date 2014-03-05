@@ -4,7 +4,7 @@ import sys, getopt
 import tempfile
 import subprocess
 import hashlib
-import db_ops.py
+import db_ops
 
 divide_script = '''\
 
