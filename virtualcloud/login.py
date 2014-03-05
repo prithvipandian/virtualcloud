@@ -1,7 +1,7 @@
-import sys, os.path, json
-
-from db_ops import db
-from gd_ops import gd
+import sys
+import json
+import db_ops
+import gd_ops
 
 def login():
     data = ""
@@ -34,11 +34,11 @@ def login():
         cmd = raw_input("To add a service please enter 'dropbox' or 'gdrive'. To go back enter 'back': ")
         cmd.lower()
         if cmd == 'dropbox':
-            ndb = db(-1)
+            ndb = db_ops.db(-1)
             data['dropbox'].append(ndb.AT)
             
         if cmd == 'gdrive':
-            ngd = gd(-1)
+            ngd = gd_ops.gd(-1)
             data['gdrive'].append(ngd.credentials)
         
         if cmd == 'back':
