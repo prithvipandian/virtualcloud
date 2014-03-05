@@ -1,8 +1,8 @@
 import cmd
-import upload
-import download
-import login
-import logout
+from upload import upload
+from download import download
+from login import login
+from logout import logout
 
 
 class VirtualCloudShell (cmd.Cmd):
