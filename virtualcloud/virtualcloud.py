@@ -1,17 +1,17 @@
 #!/usr/bin/python
 import sys
-import virtualcloud
-
+import virtualcloudshell 
+import db_ops
 
 
 if len(sys.argv) == 1:
-    VirtualCloudShell().cmdloop()
+    virtualcloudshell.VirtualCloudShell().cmdloop()
 
 options = {
-           'login' : virtualcloud.db_ops.db_login,
-           'upload' : virtualcloud.upload,
-           'download' : virtualcloud.download,
-           'logout' : virtualcloud.logout
+           'login' : login,
+           'upload' :upload,
+           'download' : download,
+           'logout' : logout
            }
            
 options[argv[1]](argv[2:])

@@ -1,5 +1,5 @@
 import cmd
-from virtualcloud import *
+import db_ops
 
 class VirtualCloudShell (cmd.Cmd):
     intro = 'Welcome to VirtualCloud! Type help or ? to list commands.\n'
@@ -13,7 +13,7 @@ class VirtualCloudShell (cmd.Cmd):
         '''
         #setup()
         pass
-    def do_login(self):
+    def do_login(self, *args):
         'Login with username and password'
         db_ops.db_login()
     def do_upload(self, *args):
