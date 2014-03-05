@@ -2,7 +2,7 @@ import sys
 import os
 import getopt
 import hashlib
-import virtualcloud
+from virtualcloud import db_ops
 import tempfile
 
 def main (argv)

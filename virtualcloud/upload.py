@@ -4,7 +4,7 @@ import sys
 import getopt
 import tempfile
 import hashlib
-import virtualcloud
+from virtualcloud import db_ops
 import json
 
 def main(argv):
