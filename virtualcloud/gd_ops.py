@@ -68,6 +68,6 @@ class gd(object):
             # The file doesn't have any content stored on Drive.
             return None
 
-random = gd(-1)
+'''random = gd(-1)
 random.gd_upload('README.md')
-random.gd_download('README.md')
+random.gd_download('README.md')'''
