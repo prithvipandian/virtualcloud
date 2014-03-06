@@ -6,6 +6,7 @@ import tempfile
 import hashlib
 import db_ops
 import json
+import os
 
 def upload(fn, cs):
     inputfile = ''
@@ -31,7 +32,7 @@ def upload(fn, cs):
     for token in gd_tokens:
         gdclients.append(gd_ops.gd(token))
 
-    prefix = hashlib.sha224(filename).hexdigest()
+    prefix = hashlib.sha224(os.path.basename(filename)).hexdigest()
     
     with open (filename, 'r+b') as src:
         suffix = 0
@@ -45,7 +46,7 @@ def upload(fn, cs):
                     outputfilepath = prefix + '.%s' % suffix
                     target.seek(0)
                     dbclients[0].db_upload(outputfilepath, target)
-                    print "Uploaded piece: " + suffix
+                    print "Uploaded piece: " + str(suffix)
                     suffix +=1
                 else:
                     upload_completed = True
