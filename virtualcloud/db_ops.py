@@ -37,7 +37,10 @@ class db(object):
     
     def db_download(self, path_db):
         f, metadata = self.client.get_file_and_metadata('/'+ path_db)
-        return f        
+        return f
+    def db_metadata(self, path_db):
+        f, metadata = self.client.get_file_and_metadata('/'+ path_db)
+        return metadata        
         '''out = open(name, 'wb')
         out.write(f.read())
         out.close()
