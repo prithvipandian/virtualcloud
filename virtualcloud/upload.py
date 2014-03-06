@@ -34,7 +34,6 @@ def upload(fn, cs):
     prefix = hashlib.sha224(filename).hexdigest()
     
     with open (filename, 'r+b') as src:
-        print(filename)
         suffix = 0
         upload_completed = False
         while upload_completed is False:
@@ -49,13 +48,9 @@ def upload(fn, cs):
                         upload_completed = True
                 #Iteration through clients TODO, temporarily only looks at first db client
                 outputfilepath = prefix + '.%s' % suffix
-                print outputfilepath
-                print dbclients[0].AT
-                print target
                 target.seek(0)
                 #print target.read(1000)
                 dbclients[0].db_upload(outputfilepath, target)
-                print "uploading 3"
                 suffix +=1
 
 

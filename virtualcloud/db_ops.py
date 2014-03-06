@@ -34,7 +34,6 @@ class db(object):
 
     def db_upload(self, path_db, user_file):
         response = self.client.put_file('/' + path_db, user_file)
-        print 'uploaded: ', response
     
     def db_download(self, path_db):
         f, metadata = self.client.get_file_and_metadata('/'+ path_db)
