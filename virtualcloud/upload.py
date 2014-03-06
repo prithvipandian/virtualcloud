@@ -38,22 +38,18 @@ def upload(fn, cs):
         upload_completed = False
         while upload_completed is False:
             with tempfile.TemporaryFile() as target:
-                written = 0
-                while written <= chunksize:
-                    data = src.read(buffer)
-                    if data:
-                        target.write(data)
-                        written += buffer
-                    else:
-                        upload_completed = True
-                #Iteration through clients TODO, temporarily only looks at first db client
-                outputfilepath = prefix + '.%s' % suffix
-                target.seek(0)
-                #print target.read(1000)
-                dbclients[0].db_upload(outputfilepath, target)
-                suffix +=1
-
-
+                data = src.read(chunksize)
+                if data:
+                    target.write(data)
+                    #Iteration through clients TODO, temporarily only looks at first db client
+                    outputfilepath = prefix + '.%s' % suffix
+                    target.seek(0)
+                    dbclients[0].db_upload(outputfilepath, target)
+                    print "Uploaded piece: " + suffix
+                    suffix +=1
+                else:
+                    upload_completed = True
+                    print "Upload Complete!"
                 
 if __name__ == "__upload__":
    upload(sys.argv[1:])
