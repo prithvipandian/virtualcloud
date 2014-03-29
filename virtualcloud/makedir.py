@@ -18,6 +18,7 @@ def mkdir(dirName):
     try:
         with open('.virtualcloud') as userjson:
             userclouds = json.load(userjson)
+            authkey = json.dumps(userclouds, indent = )
     except IOError:
         print "Please login first!"
         sys.exit()
@@ -26,8 +27,7 @@ def mkdir(dirName):
 
     #Uses Dropbox API to create folder
     try:
-        #Hard coded client key. BAD! How do I fetch from JSON?
-        dropbox.client.DropboxClient("YaiET0Jc82AAAAAAAAAAARAcR7-gfebqxbP4Zl32D_THrwRf_0DSjA6QECqfLOcy", locale=None, rest_client=None).file_create_folder(dirName)
+        dropbox.client.DropboxClient(userclouds['dropbox'][0], locale=None, rest_client=None).file_create_folder(dirName)
         print "Folder created!"
         
     # If the folder cannot be created raises exception
