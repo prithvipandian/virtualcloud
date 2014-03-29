@@ -11,23 +11,24 @@ class VirtualCloudShell (cmd.Cmd):
     prompt = '(virtualcloud)'
 
     #------ basic virtualcloud commands ---------
-    def do_setup(self):
-        '''
-        Setup your virtualcloud account with Dropbox and/or Google Drive. 
+    def do_setup(self, arg):
+        '''Setup your virtualcloud account with Dropbox and/or Google Drive. 
         Add and remove accounts.
         This must be run at least once for anything else to work.
         '''
         setup()
-    def do_upload(self, fn, cs):
+    def do_upload(self, arg):
         'Upload to one or both accounts from local'
-        upload(fn, cs)
-    def do_download(self, *args):
+        upload(*parse(arg))
+    def do_download(self, arg):
         'Download from accounts to local'
-        download(args)
-    def do_ls(self, *args):
+        download(*parse(arg))
+    def do_ls(self, arg):
         'List all files in current directory'
         #list(args)
         pass
-    def do_mkdir(self, *args):
+    def do_mkdir(self, arg):
         pass
 
+def parse(arg):
+    return tuple(arg.split())

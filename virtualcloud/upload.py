@@ -14,13 +14,13 @@ def upload(fn, cs):
     buffer = 1024
 
     filename = fn
-    chunksize = cs
+    chunksize = int(cs)
     
     try:
         with open('.virtualcloud') as userjson:
             userclouds = json.load(userjson)
     except IOError:
-        print "Please login first!"
+        print "Please add an account first!"
         sys.exit()
     db_tokens = userclouds["dropbox"]
     dbclients = []

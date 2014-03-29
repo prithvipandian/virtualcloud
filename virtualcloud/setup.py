@@ -17,17 +17,13 @@ def setup():
     if not data:
         data = {'dropbox' : [], 'gdrive' : []}
 
-    print """
-          Welcome to VirtualCloud setup! Here you can add all your cloud services for easy one step access. \n
-          """
-
+    print "Welcome to VirtualCloud setup!\nHere you can add all your cloud services for easy one step access."
+    print "To add a service please enter 'dropbox' or 'gdrive'. When done, enter 'done'.\n" \
+              "If you want to remove all your accounts, enter 'clear'."
+              
     while True:
-        cmd = raw_input(
-                        """
-                        To add a service please enter 'dropbox' or 'gdrive'. When done, enter 'done'. 
-                        If you want to remove all your accounts, enter 'clear': 
-                        """
-                        ).lower()
+        
+        cmd = raw_input('(virtualcloud setup) ').lower()
         if cmd == 'dropbox':
             db = db_ops.db(-1)
             data['dropbox'].append(db.AT)          
