@@ -18,10 +18,10 @@ class VirtualCloudShell (cmd.Cmd):
         '''
         setup()
     def do_upload(self, arg):
-        'Upload to one or both accounts from local'
+        'Upload to one or both accounts from local. Usage: "upload <full file path> <chunksize>" '
         upload(*parse(arg))
     def do_download(self, arg):
-        'Download from accounts to local'
+        'Download from accounts to local current directory. Usage: "download <filename>"'
         download(*parse(arg))
     def do_ls(self, arg):
         'List all files in current directory'
