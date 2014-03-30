@@ -18,7 +18,7 @@ def mkdir(dirName):
     try:
         with open('.virtualcloud') as userjson:
             userclouds = json.load(userjson)
-            authkey = json.dumps(userclouds, indent = )
+            authkey = json.dumps(userclouds)
     except IOError:
         print "Please login first!"
         sys.exit()
