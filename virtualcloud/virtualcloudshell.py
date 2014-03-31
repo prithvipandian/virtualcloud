@@ -31,7 +31,7 @@ class VirtualCloudShell (cmd.Cmd):
         pass
     def do_mkdir(self, arg):
     	'Create a folder'
-        mkdir(getName())
+        mkdir(arg)
         pass
 
 def parse(arg):
