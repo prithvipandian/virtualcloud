@@ -1,6 +1,7 @@
 import cmd
 from setup import setup
 from upload import upload
+from upload import uploadNotChunked
 from download import download
 from login import login
 from logout import logout
@@ -20,8 +21,10 @@ class VirtualCloudShell (cmd.Cmd):
         '''
         setup()
     def do_upload(self, arg):
-        'Upload to one or both accounts from local. Usage: "upload <full file path> <chunksize>" '
-        upload(*parse(arg))
+        'Upload to one or both accounts from local. Usage: "upload <full file path> <service>"'
+        uploadNotChunked(*parse(arg))
+        #'Upload to one or both accounts from local. Usage: "upload <full file path> <chunksize>" '
+        #upload(*parse(arg))
     def do_download(self, arg):
         'Download from accounts to local current directory. Usage: "download <filename>"'
         download(*parse(arg))
