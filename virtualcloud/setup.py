@@ -28,8 +28,7 @@ def setup():
             db = db_ops.db(-1)
             data['dropbox'].append(db.AT)          
         if cmd == 'gdrive':
-            gd = gd_ops.gd(-1)
-            data['gdrive'].append(gd.credentials) 
+            gd = gd_ops.gd(-1) 
         if cmd == 'clear':
             try:
                 os.remove(".virtualcloud")

@@ -38,8 +38,10 @@ def uploadNotChunked(fileName, service):
         print "File uploaded!"
         
     elif (service == 'drive'):
-        gd = gd_ops.gd(userclouds['gdrive'][0])
+        print "Choosing Drive"
+        gd = gd_ops.gd()
         gd.gd_upload(fileName)
+        print "File uploaded!"
 
 # Uploads a file in multiple chunks
 # fn: the full path of the file to upload

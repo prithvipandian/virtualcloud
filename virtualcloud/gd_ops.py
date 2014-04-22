@@ -7,6 +7,7 @@ from apiclient import errors
 from apiclient.discovery import build
 from apiclient.http import MediaFileUpload
 from oauth2client.client import OAuth2WebServerFlow
+from oauth2client.file import Storage
  
  
 # Copy your credentials from the console
@@ -25,8 +26,8 @@ class gd(object):
     credentials = 0
     
     def __init__(self, token):
-        self.credentials = token
-        if self.credentials == -1:
+
+        if token == -1:
             self.gd_login()
         else:
             http = httplib2.Http()
@@ -34,20 +35,29 @@ class gd(object):
             self.drive_service = build('drive', 'v2', http=http)
  
     def gd_login(self):
+        # Run through the OAuth flow and retrieve credentials
         flow = OAuth2WebServerFlow(CLIENT_ID, CLIENT_SECRET, OAUTH_SCOPE, REDIRECT_URI)
         authorize_url = flow.step1_get_authorize_url()
         print 'Go to the following link in your browser: ' + authorize_url
         code = raw_input('Enter verification code: ').strip()
         self.credentials = flow.step2_exchange(code)
+
+        #Save Google Drive OAUTH credentials to file
+        storage = Storage('gdrive_credentials')
+        storage.put(self.credentials)
+        # To Retrieve: credentials = storage.get()
+
+        # Create an httplib2.Http object and authorize it with our credentials  
         http = httplib2.Http()
         http = self.credentials.authorize(http)
         self.drive_service = build('drive', 'v2', http=http)
 
     def gd_upload(self, user_file):
          # Insert a file
+         print("Uploading")
          media_body = MediaFileUpload(user_file, mimetype='text/plain', resumable=True)
          body = {
-           'title': 'username',
+           'title': 'virtualcloud',
            'description': '',
            'mimeType': 'text/plain'
          }
@@ -67,6 +77,16 @@ class gd(object):
         else:
             # The file doesn't have any content stored on Drive.
             return None
+
+    def gd_retrieve_credentials():
+        print "retrieving credentials"
+        open('gdrive_credentials', 'r')
+        storage = Storage('gdrive_credentials')
+        self.credentials = storage.get()
+
+          
+
+         
 
 '''random = gd(-1)
 random.gd_upload('README.md')
